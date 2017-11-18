@@ -6,7 +6,7 @@ function help() {
 switch ($argv[1]) {
     case "version": //检查版本号
         require dirname(__FILE__) . '/init.php';
-        echo SYSTEM_VER . '(' . CHECK_VER . ')';
+        echo SYSTEM_VER . '(' . CHECK_VER . ')' . "\n";
     break;
     case "update": //更新大项
         switch ($argv[2]) {
