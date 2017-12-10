@@ -34,3 +34,6 @@ function  scurl ($url,$wp,$data,$cookie,$referer,$user_agent){
 	curl_close($ch);
 	return $content;
 }
+function newscurl($url,$settings){
+
+}
