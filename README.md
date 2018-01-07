@@ -1,1 +1,1 @@
-# twitter-to-tieba ## 这是一个全新的版本，还处于测试阶段（由于并没有加入_BSK参数的算法，删贴率仍然非常高，如果您不是吧务删贴率甚至会达到100%，请谨慎使用 ## 相关人员[TREEMAN](https://github.com/KUMAKO2017) <br> ## 效果 ![](https://github.com/KUMAKO2017/kdwnilpic/blob/master/twtotb1.png)
+# twitter-to-tieba ## 这是一个全新的版本，还处于测试阶段 ## 相关人员[TREEMAN](https://github.com/BANKA2017) <br> ## 效果 ![](https://github.com/BANKA2017/kdwnilpic/blob/master/twtotb1.png)
