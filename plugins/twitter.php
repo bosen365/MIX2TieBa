@@ -6,7 +6,7 @@ function twitter_get($check,$name,$tbn,$post_type,$tbs,$cookie){	$autoapi=json_d
 		return '';
 	}
 	else{
-		//echo $name.'：正在发送'."\n";
+		echo $name.'：正在发送'."\n";
 		$api=$autoapi["items_html"];
 		preg_match_all('/<p(.+?)>(.+?)<\/p>/s',$api,$kd1);
 		//preg_match_all('/data-screen-name=\"(.+?)\" data-name=\"(.+?)\" data-user-id=\"(.+?)\"/', $api, $kd2);
@@ -22,7 +22,7 @@ function twitter_get($check,$name,$tbn,$post_type,$tbs,$cookie){	$autoapi=json_d
 			$piccount+=2){
 				$tbpic.="|".tbpic($tbs,$kd3[0][$piccount],$tbn,"ajax",$cookie);
 			}
-			//echo $task["name"].'的图片数据：'.$tbpic."\n";
+			echo $task["name"].'的图片数据：'.$tbpic."\n";
 		}
 return array("text"=>$text,"tbpic"=>$tbpic,"tweetid"=>$tweetid);
 }

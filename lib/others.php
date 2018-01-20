@@ -3,10 +3,11 @@ function help() {
     echo "帮助（简体中文版）\n";
 }
 function fp($path,$type,$text){
-    $fp = fopen($path,$type);
-        flock($fp, LOCK_EX);
-        fwrite($fp, $text);
-        fclose($fp);
+    file_put_contents($path,file_get_contents($path).$text);
+    //$fp = fopen($path,$type);
+        //flock($fp, LOCK_EX);
+        //fwrite($fp, $text);
+        //fclose($fp);
 }
 /*发图接口*/
 function tbpic($tbs,$path,$tbn,$mode,$cookie){
@@ -25,8 +26,9 @@ case "ajax":
  return $a["info"]["pic_id_encode"].','.$a["info"]["fullpic_width"].','.$a["info"]["fullpic_height"].',false';
 break;
 default:
-return '#(pic,'.$a["info"]["pic_id_encode"].','.$a["info"]["fullpic_width"].','.$a["info"]["fullpic_height"].')';
+return '#(pic,'.$a["info"]["pic_id"].','.$a["info"]["fullpic_width"].','.$a["info"]["fullpic_height"].')';
 break;
 }
 }
 }
+function getParameter($data){ $sign_str = ''; foreach ($data as $k => $v) $sign_str .= $k . '=' . $v; $sign = strtoupper(md5($sign_str . 'tiebaclient!!!')); $data['sign'] = $sign; return $data;}
