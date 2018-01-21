@@ -69,12 +69,10 @@ foreach ($tasks as $task) {
                     echo $task["name"] . '：发送成功' . "\n";
                 }
                 break;
-
-            case "mobile":
-                $data = ["BDUSS" => $bduss, "_client_id" => "wappc_1515894065690_123", "_clent_type" => 102, "_client_version" => "1.3.1", "_phone_imei" => 00000000000000, "anonymous" => 1, "content" => urlencode($text) , "fid" => $fid, "from" => "appstore", "is_ad" => 0, "kw" => $task["tbn"], "model" => "ONEPLUS A3010", "new_vcode" => 1, "subapp_type" => "admin", "tbs" => $tbs, "tid" => $task["tid"], "timestamp" => time() ];
-                getParameter($data);
-                break;
-
+            //case "mobile":
+                //$data = ["BDUSS" => $bduss, "_client_id" => "wappc_1515894065690_123", "_clent_type" => 102, "_client_version" => "1.3.1", "_phone_imei" => 00000000000000, "anonymous" => 1, "content" => urlencode($text) , "fid" => $fid, "from" => "appstore", "is_ad" => 0, "kw" => $task["tbn"], "model" => "ONEPLUS A3010", "new_vcode" => 1, "subapp_type" => "admin", "tbs" => $tbs, "tid" => $task["tid"], "timestamp" => time() ];
+                //getParameter($data);
+                //break;
             default:
                 $t = scurl('http://tieba.baidu.com/mo/m?kz=' . $task["tid"], 0, '', $cookie, '', 'kdcloud automatic bot');
                 preg_match('/<form action=\"(.*?)\" method=\"post\">/', $t, $formurl);
