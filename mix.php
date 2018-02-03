@@ -33,10 +33,11 @@ case "update": //更新大项
             break;
             default:
                 help(); //你啥都不填怪我咯
-                
+                break;
         }
     break;
 }
+break;
  case 4:
 switch ($argv[1]){
 case "update": //更新大项
@@ -47,6 +48,7 @@ case "update": //更新大项
             break;
             default:
                 help(); //你啥都不填怪我咯
+break;
 }
 break;
 default:
