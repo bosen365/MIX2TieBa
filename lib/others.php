@@ -31,4 +31,3 @@ break;
 }
 }
 }
-function getParameter($data){ $sign_str = ''; foreach ($data as $k => $v) $sign_str .= $k . '=' . $v; $sign = strtoupper(md5($sign_str . 'tiebaclient!!!')); $data['sign'] = $sign; return $data;}
