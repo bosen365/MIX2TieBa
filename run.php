@@ -28,7 +28,7 @@ $replace = json_decode(file_get_contents(SYSTEM_ROOT . '/db/replacelist.json') ,
 $replace=array_merge($selfreplace,$replace);
 $count=1;
 foreach ($tasks as $task) {
-    if ($count==60){echo "system:单分钟请求超限，暂停30s\n";
+    if (($count % 60)==0){echo "system:单分钟请求超限，暂停30s\n";
 sleep(30);}
     if (!file_exists(SYSTEM_ROOT . '/db/postlock/' . $task["name"] . '_' . $task["tbn"] . '.kd')) {
         $check = 0;
