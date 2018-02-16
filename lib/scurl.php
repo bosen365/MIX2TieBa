@@ -1,4 +1,5 @@
 <?php
+/*准备重写*/
 function  scurl ($url,$wp,$data,$cookie,$referer,$user_agent){
 	$ch=curl_init($url);
 	switch($user_agent){
@@ -30,7 +31,6 @@ function  scurl ($url,$wp,$data,$cookie,$referer,$user_agent){
 		curl_setopt($ch,CURLOPT_POST ,1);
 		curl_setopt($ch,CURLOPT_POSTFIELDS ,$data);
 	}
-	$content=curl_exec($ch);
+	return curl_exec($ch);
 	curl_close($ch);
-	return $content;
 }
