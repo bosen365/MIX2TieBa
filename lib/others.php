@@ -5,6 +5,7 @@ function help()
 }
 function csv($path, $type, $array)
 {
+    if(!file_exists($path)){file_put_contents($path);}
     $fp = fopen($path, $type);
     fputcsv($fp,$array);
     fclose ($fp);
