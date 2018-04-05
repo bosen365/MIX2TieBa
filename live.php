@@ -1,7 +1,7 @@
 <?php
 /**
 * KD·boT 
-* Copyright (c) 2015~2018 NULLMIX&KD·Lab All Rights Reserved. 
+* Copyright (c) 2015~2018 KD·Lab All Rights Reserved. 
 **/
 set_time_limit(0);
 ignore_user_abort(true);
@@ -16,8 +16,15 @@ $tbs = $gettbs["tbs"];
 $tasks = json_decode(file_get_contents(SYSTEM_ROOT . '/db/tasks.json'), 1);
 /*get replacelist*/
 $replace = json_decode(file_get_contents(SYSTEM_ROOT . '/db/replacelist.json'), 1);
-while ($x = 1) {
+for($x=0;$x>-1;$x++){
+    $starttime=time();
     foreach ($tasks as $task) {
+        if ($count % 99 == 0 && time()<=$starttime+60) {
+        $sleeptime=($starttime+60-time());
+        echo "system:单分钟请求超限，暂停{$sleeptime}s\n";
+        sleep($sleeptime);
+        $starttime=time();
+    }
         if (!file_exists(SYSTEM_ROOT . '/db/postlock/' . $task["name"] . '_' . $task["tbn"] . '.kd')) {
             $check = 0;
         } else {

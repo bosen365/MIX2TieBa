@@ -1,7 +1,7 @@
 <?php
 /** 
 * KD·boT 
-* Copyright (c) 2015~2018 NULLMIX&KD·Lab All Rights Reserved. 
+* Copyright (c) 2015~2018 KD·Lab All Rights Reserved. 
 **/
 set_time_limit(300);
 ignore_user_abort(true);
@@ -28,10 +28,13 @@ $selfreplace = json_decode(file_get_contents(SYSTEM_ROOT . '/db/selfreplacelist.
 $replace = json_decode(file_get_contents(SYSTEM_ROOT . '/db/replacelist.json'), 1);
 $replace = array_merge($selfreplace, $replace);
 $count = 1;
+$starttime = time();
 foreach ($tasks as $task) {
-    if ($count % 60 == 0) {
-        echo "system:单分钟请求超限，暂停30s\n";
-        sleep(30);
+    if ($count % 99 == 0 && time()<=$starttime+60) {
+        $sleeptime=($starttime+60-time());
+        echo "system:单分钟请求超限，暂停{$sleeptime}s\n";
+        sleep($sleeptime);
+        $starttime=time();
     }
     if (!file_exists(SYSTEM_ROOT . '/db/postlock/' . $task["name"] . '_' . $task["tbn"] . '.kd')) {
         $check = 0;
@@ -63,8 +66,10 @@ foreach ($tasks as $task) {
         /*好戏开始*/
         $a = bdtb($task, $text, $tbpic, $tbs, $cookie);
         csv(SYSTEM_ROOT . '/db/log.csv', "a", $a);
+        sleep(2);//2s cd防封
     }
     $count++;
+    
 }
 file_put_contents(SYSTEM_ROOT . '/db/status.json', json_encode(array("status" => "die", "timestamp" => time())));
 echo "smartlock：完成\n";
