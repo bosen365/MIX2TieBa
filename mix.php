@@ -7,15 +7,19 @@ if (!SYSTEM_ISCONSOLE) {
 switch ($argc) {
     case 2:
         switch ($argv[1]) {
+            case "-v":
             case "version":
                 //检查版本号
                 echo 'MIX2TB ' . SYSTEM_VER . '(' . CHECK_VER . ')' . "\n";
                 break;
+            case "-l":
             case "list":
                 //任务列表
                 $tasks = json_decode(file_get_contents(SYSTEM_ROOT . '/db/tasks.json'), 1);
+                $x=0;
                 foreach ($tasks as $task) {
-                    echo "用户名：{$task['name']}|贴吧名：{$task['tbn']}|贴id：{$task['tid']}|发送方式：{$task['post_type']}|获取类型：{$task['get_type']}\n";
+                    echo "{$x}\n - 用户名 {$task['name']}\n - 贴吧名 {$task['tbn']}\n - 贴id {$task['tid']}\n - 发送方式 {$task['post_type']}\n - 获取类型 {$task['get_type']}\n";
+                    $x++;
                 }
                 break;
             default:
@@ -25,6 +29,13 @@ switch ($argc) {
         break;
     case 3:
         switch ($argv[1]) {
+            case "delete":
+            case "del":
+                $tasks = json_decode(file_get_contents(SYSTEM_ROOT . '/db/tasks.json'), 1);
+                array_splice($tasks,$argv[2],1);
+                file_put_contents(SYSTEM_ROOT . '/db/tasks.json', json_encode($tasks));
+                echo "已删除第{$argv[2]}项\n";
+                break;
             case "update":
                 //更新大项
                 switch ($argv[2]) {
