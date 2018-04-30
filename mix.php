@@ -40,14 +40,14 @@ switch ($argc) {
                 //更新大项
                 switch ($argv[2]) {
                     case "dellist":
-                        $newdellist = file_get_contents('https://kdwnil.github.io/api/mix2tieba/replacelist.json');
+                        $newdellist = file_get_contents('https://kdnetwork.github.io/api/mix2tieba/replacelist.json');
                         file_put_contents(SYSTEM_ROOT . '/db/replacelist.json', $newdellist);
                         echo "已更新替换词列表 \n";
                         break;
                     case "twtotb":
                         break;
                     case "check":
-                        $check = json_decode(file_get_contents("https://kdwnil.github.io/api/mix2tieba/version.json"), 1);
+                        $check = json_decode(file_get_contents("https://kdnetwork.github.io/api/mix2tieba/version.json"), 1);
                         if ($check["check_ver"] > CHECK_VER) {
                             echo "系统更新 \n 版本号：" . $check["system_ver"] . "（" . $check["check_ver"] . "）\n 更新内容：" . $check["check_data"] . "\n";
                         } else {
